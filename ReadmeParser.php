@@ -213,8 +213,38 @@ class Baikonur_ReadmeParser {
 	}
 
 	protected static function parse_markdown($text) {
+		$text = self::code_trick($text);
 		$text = preg_replace('/^[\s]*=[\s]+(.+?)[\s]+=/m', "\n" . '<h4>$1</h4>' . "\n", $text);
 		$text = Markdown(trim($text));
 		return trim($text);
+	}
+
+	protected static function code_trick($text) {
+		// If doing markdown, first take any user formatted code blocks and turn them into backticks so that
+		// markdown will preserve things like underscores in code blocks
+		$text = preg_replace_callback("!(<pre><code>|<code>)(.*?)(</code></pre>|</code>)!s", array(__CLASS__, 'decodeit'), $text);
+
+		$text = str_replace(array("\r\n", "\r"), "\n", $text);
+		// Markdown can do inline code, we convert bbPress style block level code to Markdown style
+		$text = preg_replace_callback("!(^|\n)([ \t]*?)`(.*?)`!s", array(__CLASS__, 'indent'), $text);
+		return $text;
+	}
+
+	protected static function indent($matches) {
+		$text = $matches[3];
+		$text = preg_replace('|^|m', $matches[2] . '    ', $text);
+		return $matches[1] . $text;
+	}
+
+	protected static function decodeit($matches) {
+		$text = $matches[2];
+		$trans_table = array_flip(get_html_translation_table(HTML_ENTITIES));
+		$text = strtr($text, $trans_table);
+		$text = str_replace('<br />', '', $text);
+		$text = str_replace('&#38;', '&', $text);
+		$text = str_replace('&#39;', "'", $text);
+		if ( '<pre><code>' == $matches[1] )
+			$text = "\n$text\n";
+		return "`$text`";
 	}
 }
