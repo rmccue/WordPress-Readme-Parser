@@ -50,8 +50,14 @@ class Baikonur_ReadmeParser {
 		if (!empty($headers['requires'])) {
 			$data->requires = $headers['requires'];
 		}
+		if (!empty($headers['requires_at_least'])) {
+			$data->requires = $headers['requires_at_least'];
+		}
 		if (!empty($headers['tested'])) {
 			$data->tested = $headers['tested'];
+		}
+		if (!empty($headers['tested_up_to'])) {
+			$data->tested = $headers['tested_up_to'];
 		}
 		if (!empty($headers['contributors'])) {
 			$data->contributors = explode(',', $headers['contributors']);
