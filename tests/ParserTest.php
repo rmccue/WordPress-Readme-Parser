@@ -58,7 +58,12 @@ class ParserTest extends PHPUnit_Framework_TestCase {
 			'  This should be no more than 150 characters.  No markup here.',
 			$data->short_description);
 
-		$this->assertEquals("This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from\nthe directory of the stable readme.txt, so in this case, <code>/tags/4.3/screenshot-1.png</code> (or jpg, jpeg, gif)", $data->screenshots[0]);
+		$this->assertEquals("This screen shot description corresponds to" .
+			" screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from\n" .
+			"the directory of the stable readme.txt, so in this case," .
+			" <code>/tags/4.3/screenshot-1.png</code> (or jpg, jpeg, gif)",
+			$data->screenshots[0]);
+
 		$this->assertEquals('This is the second screen shot', $data->screenshots[1]);
 	}
 }
