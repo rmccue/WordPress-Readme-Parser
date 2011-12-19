@@ -105,8 +105,8 @@ class Baikonur_ReadmeParser {
 				}
 
 				$current = '';
-				$real_title = strtolower(trim($line, "#= "));
-				$title = str_replace(' ', '_', $real_title);
+				$real_title = trim($line, "#= ");
+				$title = strtolower(str_replace(' ', '_', $real_title));
 				if (!in_array($title, $special)) {
 					$current .= '<h3>' . $real_title . "</h3>\n";
 				}
