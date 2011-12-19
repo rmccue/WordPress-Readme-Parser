@@ -91,7 +91,7 @@ class Baikonur_ReadmeParser {
 
 		$data->sections = array();
 		$current = '';
-		$special = array('description', 'installation', 'faq', 'frequently_asked_questions', 'screenshots', 'changelog');
+		$special = array('description', 'installation', 'faq', 'frequently_asked_questions', 'screenshots', 'changelog', 'upgrade_notice');
 
 		while (($line = array_shift($contents)) !== null) {
 			if (empty($line)) {
@@ -154,20 +154,45 @@ class Baikonur_ReadmeParser {
 			$data->changelog[$title] = trim($current);
 		}
 
-		$data->screenshots = array();
-		if (isset($data->sections['screenshots'])) {
-			preg_match_all('#(?:\*|[0-9]+\.)(.*)#i', $data->sections['screenshots'], $screenshots, PREG_SET_ORDER);
-			if ($screenshots) {
-				foreach ((array) $screenshots as $ss) {
-					$data->screenshots[] = trim($ss[1]);
+		$data->upgrade_notice = array();
+		if (!empty($data->sections['upgrade_notice'])) {
+			$lines = explode("\n", $data->sections['upgrade_notice']);
+			while (($line = array_shift($lines)) !== null) {
+				if (empty($line)) {
+					continue;
 				}
+
+				if ($line[0] === '=') {
+					if (!empty($current)) {
+						$data->upgrade_notice[$title] = trim($current);
+					}
+
+					$current = '';
+					$title = trim($line, "#= ");
+					continue;
+				}
+
+				$current .= $line . "\n";
 			}
+
+			$data->upgrade_notice[$title] = trim($current);
 		}
 
 		// Markdownify!
 
 		$data->sections = array_map(array(__CLASS__, 'parse_markdown'), $data->sections);
 		$data->changelog = array_map(array(__CLASS__, 'parse_markdown'), $data->changelog);
+		$data->upgrade_notice = array_map(array(__CLASS__, 'parse_markdown'), $data->upgrade_notice);
+
+		$data->screenshots = array();
+		if (isset($data->sections['screenshots'])) {
+			preg_match_all('#<li>(.*?)</li>#is', $data->sections['screenshots'], $screenshots, PREG_SET_ORDER);
+			if ($screenshots) {
+				foreach ((array) $screenshots as $ss) {
+					$data->screenshots[] = trim($ss[1]);
+				}
+			}
+		}
 
 		// Rearrange stuff
 
