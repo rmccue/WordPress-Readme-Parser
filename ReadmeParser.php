@@ -153,6 +153,8 @@ class Baikonur_ReadmeParser {
 
 			$data->changelog[$title] = trim($current);
 		}
+		$title = null;
+		$current = null;
 
 		$data->upgrade_notice = array();
 		if (!empty($data->sections['upgrade_notice'])) {
