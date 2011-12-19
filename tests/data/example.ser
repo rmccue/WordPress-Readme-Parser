@@ -1,0 +1,93 @@
+O:8:"stdClass":15:{s:10:"is_excerpt";b:0;s:12:"is_truncated";b:0;s:4:"tags";a:2:{i:0;s:8:"comments";i:1;s:4:"spam";}s:8:"requires";s:5:"2.0.2";s:6:"tested";s:3:"2.1";s:12:"contributors";a:2:{i:0;s:11:"markjaquith";i:1;s:8:"mdawaffe";}s:10:"stable_tag";s:3:"4.3";s:11:"donate_link";s:19:"http://example.com/";s:17:"short_description";s:104:"Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.";s:8:"sections";a:5:{s:11:"description";s:1846:"<p>This is the long description.  No limit, and you can use Markdown (as well as in the following sections).</p>
+
+<p>For backwards compatibility, if this section is missing, the full length of the short description will be used, and
+Markdown parsed.</p>
+
+<p>A few notes about the sections above:</p>
+
+<ul>
+<li>"Contributors" is a comma separated list of wp.org/wp-plugins.org usernames</li>
+<li>"Tags" is a comma separated list of tags that apply to the plugin</li>
+<li>"Requires at least" is the lowest version that the plugin will work on</li>
+<li>"Tested up to" is the highest version that you've <em>successfully used to test the plugin</em>. Note that it might work on
+higher versions... this is just the highest one you've verified.</li>
+<li><p>Stable tag should indicate the Subversion "tag" of the latest stable version, or "trunk," if you use <code>/trunk/</code> for
+stable.</p>
+
+<p>Note that the <code>readme.txt</code> of the stable tag is the one that is considered the defining one for the plugin, so
+if the <code>/trunk/readme.txt</code> file says that the stable tag is <code>4.3</code>, then it is <code>/tags/4.3/readme.txt</code> that'll be used
+for displaying information about the plugin.  In this situation, the only thing considered from the trunk <code>readme.txt</code>
+is the stable tag pointer.  Thus, if you develop in trunk, you can update the trunk <code>readme.txt</code> to reflect changes in
+your in-development version, without having that information incorrectly disclosed about the current stable version
+that lacks those changes -- as long as the trunk's <code>readme.txt</code> points to the correct stable tag.</p>
+
+<p>If no stable tag is provided, it is assumed that trunk is stable, but you should specify "trunk" if that's where
+you put the stable version, in order to eliminate any doubt.</p></li>
+</ul>";s:12:"installation";s:357:"<p>This section describes how to install the plugin and get it working.</p>
+
+<p>e.g.</p>
+
+<ol>
+<li>Upload <code>plugin-name.php</code> to the <code>/wp-content/plugins/</code> directory</li>
+<li>Activate the plugin through the 'Plugins' menu in WordPress</li>
+<li>Place <code>&lt;?php do_action('plugin_name_hook'); ?&gt;</code> in your templates</li>
+</ol>";s:3:"faq";s:144:"<h4>A question that someone might have</h4>
+
+<p>An answer to that question.</p>
+
+<h4>What about foo bar?</h4>
+
+<p>Answer to foo bar dilemma.</p>";s:11:"screenshots";s:292:"<ol>
+<li>This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
+the directory of the stable readme.txt, so in this case, <code>/tags/4.3/screenshot-1.png</code> (or jpg, jpeg, gif)</li>
+<li>This is the second screen shot</li>
+</ol>";s:9:"changelog";s:189:"<h4>1.0</h4>
+
+<ul>
+<li>A change since the previous version.</li>
+<li>Another change.</li>
+</ul>
+
+<h4>0.5</h4>
+
+<ul>
+<li>List versions from most recent at top to oldest at bottom.</li>
+</ul>";}s:9:"changelog";a:2:{s:3:"1.0";s:81:"<ul>
+<li>A change since the previous version.</li>
+<li>Another change.</li>
+</ul>";s:3:"0.5";s:78:"<ul>
+<li>List versions from most recent at top to oldest at bottom.</li>
+</ul>";}s:14:"upgrade_notice";a:2:{s:3:"1.0";s:95:"<p>Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.</p>";s:3:"0.5";s:71:"<p>This version fixes a security related bug.  Upgrade immediately.</p>";}s:11:"screenshots";a:2:{i:0;s:232:"This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
+the directory of the stable readme.txt, so in this case, <code>/tags/4.3/screenshot-1.png</code> (or jpg, jpeg, gif)";i:1;s:30:"This is the second screen shot";}s:17:"remaining_content";a:2:{s:17:"arbitrary_section";s:357:"<h3>Arbitrary section</h3>
+
+<p>You may provide arbitrary sections, in the same format as the ones above.  This may be of use for extremely complicated
+plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
+"installation."  Arbitrary sections will be shown below the built-in sections outlined above.</p>";s:24:"a_brief_markdown_example";s:836:"<h3>A brief Markdown Example</h3>
+
+<p>Ordered list:</p>
+
+<ol>
+<li>Some feature</li>
+<li>Another feature</li>
+<li>Something else about the plugin</li>
+</ol>
+
+<p>Unordered list:</p>
+
+<ul>
+<li>something</li>
+<li>something else</li>
+<li>third thing</li>
+</ul>
+
+<p>Here's a link to <a href="http://wordpress.org/" title="Your favorite software">WordPress</a> and one to <a href="http://daringfireball.net/projects/markdown/syntax" title="Markdown is what the parser uses to process much of the readme file">Markdown's Syntax Documentation</a>.
+Titles are optional, naturally.</p>
+
+<p>Markdown uses email style notation for blockquotes and I've been told:</p>
+
+<blockquote>
+  <p>Asterisks for <em>emphasis</em>. Double it up  for <strong>strong</strong>.</p>
+</blockquote>
+
+<pre><code>&lt;?php code(); // goes in backticks ?&gt;
+</code></pre>";}s:4:"name";s:11:"Plugin Name";}
