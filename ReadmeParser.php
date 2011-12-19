@@ -178,6 +178,7 @@ class Baikonur_ReadmeParser {
 			}
 
 			$data->upgrade_notice[$title] = trim($current);
+			unset($data->sections['upgrade_notice']);
 		}
 
 		// Markdownify!
