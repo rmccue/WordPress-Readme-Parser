@@ -208,10 +208,6 @@ class Baikonur_ReadmeParser {
 			}
 		}
 
-		if (isset($data->remaining_content['upgrade_notice'])) {
-			$data->upgrade_notice = $data->remaining_content['upgrade_notice'];
-		}
-
 		return $data;
 	}
 
