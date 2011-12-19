@@ -39,7 +39,8 @@ class Baikonur_ReadmeParser {
 			}
 
 			list($key, $value) = explode(':', $line, 2);
-			$headers[strtolower(trim($key))] = trim($value);
+			$key = strtolower(str_replace(array(' ', "\t"), '_', trim($key)));
+			$headers[$key] = trim($value);
 		}
 
 		if (!empty($headers['tags'])) {
