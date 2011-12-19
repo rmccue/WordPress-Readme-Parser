@@ -21,7 +21,7 @@ class Baikonur_ReadmeParser {
 			$contents = explode("\n", $contents);
 		}
 
-		$contents = array_map('trim', $contents);
+		$contents = array_map('rtrim', $contents);
 
 		$data = new stdClass;
 		$data->is_excerpt = false;
