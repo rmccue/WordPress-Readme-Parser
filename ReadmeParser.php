@@ -24,8 +24,22 @@ class Baikonur_ReadmeParser {
 		$contents = array_map('rtrim', $contents);
 
 		$data = new stdClass;
+
+		// Defaults
 		$data->is_excerpt = false;
 		$data->is_truncated = false;
+		$data->tags = array();
+		$data->requires = '';
+		$data->tested = '';
+		$data->contributors = array();
+		$data->stable_tag = '';
+		$data->donate_link = '';
+		$data->short_description = '';
+		$data->sections = array();
+		$data->changelog = array();
+		$data->upgrade_notice = array();
+		$data->screenshots = array();
+		$data->remaining_content = array();
 
 		$data->name = array_shift($contents);
 		$data->name = trim($data->name, "#= ");
@@ -71,8 +85,6 @@ class Baikonur_ReadmeParser {
 		}
 
 		// Parse the short description
-		$data->short_description = '';
-
 		while (($line = array_shift($contents)) !== null) {
 			if (empty($line)) {
 				$data->short_description .= "\n";
@@ -88,8 +100,6 @@ class Baikonur_ReadmeParser {
 		$data->short_description = trim($data->short_description);
 
 		// Parse the rest of the body
-
-		$data->sections = array();
 		$current = '';
 		$special = array('description', 'installation', 'faq', 'frequently_asked_questions', 'screenshots', 'changelog', 'upgrade_notice');
 
@@ -129,8 +139,6 @@ class Baikonur_ReadmeParser {
 		}
 
 		// Parse changelog
-		$data->changelog = array();
-
 		if (!empty($data->sections['changelog'])) {
 			$lines = explode("\n", $data->sections['changelog']);
 			while (($line = array_shift($lines)) !== null) {
@@ -156,7 +164,6 @@ class Baikonur_ReadmeParser {
 		$title = null;
 		$current = null;
 
-		$data->upgrade_notice = array();
 		if (!empty($data->sections['upgrade_notice'])) {
 			$lines = explode("\n", $data->sections['upgrade_notice']);
 			while (($line = array_shift($lines)) !== null) {
@@ -187,7 +194,6 @@ class Baikonur_ReadmeParser {
 		$data->changelog = array_map(array(__CLASS__, 'parse_markdown'), $data->changelog);
 		$data->upgrade_notice = array_map(array(__CLASS__, 'parse_markdown'), $data->upgrade_notice);
 
-		$data->screenshots = array();
 		if (isset($data->sections['screenshots'])) {
 			preg_match_all('#<li>(.*?)</li>#is', $data->sections['screenshots'], $screenshots, PREG_SET_ORDER);
 			if ($screenshots) {
