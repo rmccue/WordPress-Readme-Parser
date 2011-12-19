@@ -66,7 +66,7 @@ class Baikonur_ReadmeParser {
 		// Parse the short description
 		$data->short_description = '';
 
-		while (($line = array_shift($contents)) !== false) {
+		while (($line = array_shift($contents)) !== null) {
 			if (empty($line)) {
 				$data->short_description .= "\n";
 				continue;
