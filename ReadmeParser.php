@@ -203,7 +203,9 @@ class Baikonur_ReadmeParser {
 				$current .= $line . "\n";
 			}
 
-			$data->upgrade_notice[$title] = trim($current);
+			if (!empty($title) && !empty($current)) {
+				$data->upgrade_notice[$title] = trim($current);
+			}
 			unset($data->sections['upgrade_notice']);
 		}
 
