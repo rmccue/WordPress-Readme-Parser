@@ -120,6 +120,9 @@ class Baikonur_ReadmeParser {
 				$current = '';
 				$real_title = trim($line, "#= ");
 				$title = strtolower(str_replace(' ', '_', $real_title));
+				if ($title === 'faq') {
+					$title = 'frequently_asked_questions';
+				}
 				if (!in_array($title, $special)) {
 					$current .= '<h3>' . $real_title . "</h3>\n";
 				}
@@ -137,10 +140,6 @@ class Baikonur_ReadmeParser {
 
 		if (empty($data->sections['description'])) {
 			$data->sections['description'] = self::parse_markdown($data->short_description);
-		}
-		if (empty($data->sections['frequently_asked_questions']) && !empty($data->sections['faq'])) {
-			$data->sections['frequently_asked_questions'] = $data->sections['faq'];
-			unset($data->sections['faq']);
 		}
 
 		// Parse changelog
