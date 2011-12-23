@@ -23,6 +23,11 @@ class Baikonur_ReadmeParser {
 
 		$contents = array_map(array(__CLASS__, 'strip_newlines'), $contents);
 
+		// Strip BOM
+		if (strpos($contents[0], "\xEF\xBB\xBF") === 0) {
+			$contents[0] = substr($contents[0], 3);
+		}
+
 		$data = new stdClass;
 
 		// Defaults
