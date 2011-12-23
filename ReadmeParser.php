@@ -124,7 +124,7 @@ class Baikonur_ReadmeParser {
 					$title = 'frequently_asked_questions';
 				}
 				if (!in_array($title, $special)) {
-					$current .= '<h3>' . $real_title . "</h3>\n";
+					$current .= '<h3>' . $real_title . "</h3>";
 				}
 				continue;
 			}
