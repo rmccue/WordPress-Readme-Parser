@@ -106,9 +106,17 @@ class Baikonur_ReadmeParser {
 		}
 		$data->short_description = trim($data->short_description);
 
-		if (strlen($data->short_description) > 150) {
-			$data->is_truncated = true;
-			$data->short_description = substr($data->short_description, 0, 150);
+		if (function_exists('mb_strlen') && function_exists('mb_substr')) {
+			if (mb_strlen($data->short_description) > 150) {
+				$data->is_truncated = true;
+				$data->short_description = mb_substr($data->short_description, 0, 150);
+			}
+		}
+		else {
+			if (strlen($data->short_description) > 150) {
+				$data->is_truncated = true;
+				$data->short_description = substr($data->short_description, 0, 150);
+			}
 		}
 
 		// Parse the rest of the body
