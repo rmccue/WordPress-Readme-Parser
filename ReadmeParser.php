@@ -21,7 +21,7 @@ class Baikonur_ReadmeParser {
 			$contents = explode("\n", $contents);
 		}
 
-		$contents = array_map('rtrim', $contents);
+		//$contents = array_map('rtrim', $contents);
 
 		$data = new stdClass;
 
