@@ -133,6 +133,9 @@ class Baikonur_ReadmeParser {
 				if ($title === 'faq') {
 					$title = 'frequently_asked_questions';
 				}
+				elseif ($title === 'change_log') {
+					$title = 'changelog';
+				}
 				if (!in_array($title, $special)) {
 					$current .= '<h3>' . $real_title . "</h3>";
 				}
