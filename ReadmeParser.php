@@ -133,9 +133,9 @@ class Baikonur_ReadmeParser {
 		if (empty($data->sections['description'])) {
 			$data->sections['description'] = self::parse_markdown($data->short_description);
 		}
-		if (empty($data->sections['faq']) && !empty($data->sections['frequently_asked_questions'])) {
-			$data->sections['faq'] = $data->sections['frequently_asked_questions'];
-			unset($data->sections['frequently_asked_questions']);
+		if (empty($data->sections['frequently_asked_questions']) && !empty($data->sections['faq'])) {
+			$data->sections['frequently_asked_questions'] = $data->sections['faq'];
+			unset($data->sections['faq']);
 		}
 
 		// Parse changelog
