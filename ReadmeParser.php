@@ -96,6 +96,11 @@ class Baikonur_ReadmeParser {
 		}
 		$data->short_description = trim($data->short_description);
 
+		if (strlen($data->short_description) > 150) {
+			$data->is_truncated = true;
+			$data->short_description = substr($data->short_description, 0, 150);
+		}
+
 		// Parse the rest of the body
 		$current = '';
 		$special = array('description', 'installation', 'faq', 'frequently_asked_questions', 'screenshots', 'changelog', 'upgrade_notice');
