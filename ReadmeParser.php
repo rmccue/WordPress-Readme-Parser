@@ -123,7 +123,7 @@ class Baikonur_ReadmeParser {
 			}
 
 			if ($line[0] === '=' && $line[1] === '=') {
-				if (!empty($current)) {
+				if (!empty($title)) {
 					$data->sections[$title] = trim($current);
 				}
 
@@ -145,7 +145,7 @@ class Baikonur_ReadmeParser {
 			$current .= $line . "\n";
 		}
 
-		if (!empty($title) && !empty($current)) {
+		if (!empty($title)) {
 			$data->sections[$title] = trim($current);
 		}
 		$title = null;
@@ -230,7 +230,7 @@ class Baikonur_ReadmeParser {
 		$data->sections = array();
 
 		foreach ($special as $spec) {
-			if (!empty($data->remaining_content[$spec])) {
+			if (isset($data->remaining_content[$spec])) {
 				$data->sections[$spec] = $data->remaining_content[$spec];
 				unset($data->remaining_content[$spec]);
 			}
