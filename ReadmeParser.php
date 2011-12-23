@@ -92,7 +92,7 @@ class Baikonur_ReadmeParser {
 				$data->short_description .= "\n";
 				continue;
 			}
-			if ($line[0] === '=' && $line[1] === '=') {
+			if ($trimmed[0] === '=' && $trimmed[1] === '=') {
 				array_unshift($contents, $line);
 				break;
 			}
@@ -117,7 +117,7 @@ class Baikonur_ReadmeParser {
 				continue;
 			}
 
-			if ($line[0] === '=' && $line[1] === '=') {
+			if ($trimmed[0] === '=' && $trimmed[1] === '=') {
 				if (!empty($title)) {
 					$data->sections[$title] = trim($current);
 				}
@@ -159,7 +159,7 @@ class Baikonur_ReadmeParser {
 					continue;
 				}
 
-				if ($line[0] === '=') {
+				if ($trimmed[0] === '=') {
 					if (!empty($current)) {
 						$data->changelog[$title] = trim($current);
 					}
@@ -185,7 +185,7 @@ class Baikonur_ReadmeParser {
 					continue;
 				}
 
-				if ($line[0] === '=') {
+				if ($trimmed[0] === '=') {
 					if (!empty($current)) {
 						$data->upgrade_notice[$title] = trim($current);
 					}
