@@ -29,6 +29,11 @@ class _Automattic_Readme extends Baikonur_ReadmeParser {
 				$notice = self::sanitize_text($notice);
 			}
 		}
+		if (!empty($result->screenshots)) {
+			foreach ($result->screenshots as &$shot) {
+				$shot = self::filter_text($shot);
+			}
+		}
 
 		if (!empty($result->remaining_content)) {
 			$result->remaining_content = implode("\n", $result->remaining_content);
