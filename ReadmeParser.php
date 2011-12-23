@@ -182,7 +182,7 @@ class Baikonur_ReadmeParser {
 		$title = null;
 		$current = null;
 
-		if (!empty($data->sections['upgrade_notice'])) {
+		if (isset($data->sections['upgrade_notice'])) {
 			$lines = explode("\n", $data->sections['upgrade_notice']);
 			while (($line = array_shift($lines)) !== null) {
 				$trimmed = trim($line);
