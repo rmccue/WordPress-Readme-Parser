@@ -41,19 +41,14 @@ class Baikonur_ReadmeParser {
 		$data->screenshots = array();
 		$data->remaining_content = array();
 
-		$data->name = array_shift($contents);
+		$line = self::get_first_nonwhitespace($contents);
+		$data->name = $line;
 		$data->name = trim($data->name, "#= ");
-
-		while (($line = array_shift($contents)) !== null) {
-			$trimmed = trim($line);
-			if (!empty($line)) {
-				break;
-			}
-		}
 
 		// Parse headers
 		$headers = array();
 
+		$line = self::get_first_nonwhitespace($contents);
 		do {
 			$key = $value = null;
 			$bits = explode(':', $line, 2);
@@ -237,6 +232,17 @@ class Baikonur_ReadmeParser {
 		}
 
 		return $data;
+	}
+
+	protected static function get_first_nonwhitespace(&$contents) {
+		while (($line = array_shift($contents)) !== null) {
+			$trimmed = trim($line);
+			if (!empty($line)) {
+				break;
+			}
+		}
+
+		return $line;
 	}
 
 	protected static function strip_newlines($line) {
