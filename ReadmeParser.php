@@ -21,7 +21,7 @@ class Baikonur_ReadmeParser {
 			$contents = explode("\n", $contents);
 		}
 
-		//$contents = array_map('rtrim', $contents);
+		$contents = array_map(array(__CLASS__, 'strip_newlines'), $contents);
 
 		$data = new stdClass;
 
@@ -218,6 +218,10 @@ class Baikonur_ReadmeParser {
 		}
 
 		return $data;
+	}
+
+	protected static function strip_newlines($line) {
+		return rtrim($line, "\r\n");
 	}
 
 	protected static function parse_markdown($text) {
