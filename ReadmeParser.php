@@ -47,11 +47,7 @@ class Baikonur_ReadmeParser {
 		// Parse headers
 		$headers = array();
 
-		while (($line = array_shift($contents)) !== false) {
-			if (empty($line)) {
-				break;
-			}
-
+		while (($line = array_shift($contents)) !== null && ($line = trim($line)) && !empty($line)) {
 			list($key, $value) = explode(':', $line, 2);
 			$key = strtolower(str_replace(array(' ', "\t"), '_', trim($key)));
 			$headers[$key] = trim($value);
@@ -86,7 +82,8 @@ class Baikonur_ReadmeParser {
 
 		// Parse the short description
 		while (($line = array_shift($contents)) !== null) {
-			if (empty($line)) {
+			$trimmed = trim($line);
+			if (empty($trimmed)) {
 				$data->short_description .= "\n";
 				continue;
 			}
@@ -104,7 +101,8 @@ class Baikonur_ReadmeParser {
 		$special = array('description', 'installation', 'faq', 'frequently_asked_questions', 'screenshots', 'changelog', 'upgrade_notice');
 
 		while (($line = array_shift($contents)) !== null) {
-			if (empty($line)) {
+			$trimmed = trim($line);
+			if (empty($trimmed)) {
 				$current .= "\n";
 				continue;
 			}
@@ -142,7 +140,8 @@ class Baikonur_ReadmeParser {
 		if (!empty($data->sections['changelog'])) {
 			$lines = explode("\n", $data->sections['changelog']);
 			while (($line = array_shift($lines)) !== null) {
-				if (empty($line)) {
+				$trimmed = trim($line);
+				if (empty($trimmed)) {
 					continue;
 				}
 
@@ -167,7 +166,8 @@ class Baikonur_ReadmeParser {
 		if (!empty($data->sections['upgrade_notice'])) {
 			$lines = explode("\n", $data->sections['upgrade_notice']);
 			while (($line = array_shift($lines)) !== null) {
-				if (empty($line)) {
+				$trimmed = trim($line);
+				if (empty($trimmed)) {
 					continue;
 				}
 
