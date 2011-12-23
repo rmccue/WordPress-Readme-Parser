@@ -38,6 +38,7 @@ class _Automattic_Readme extends Baikonur_ReadmeParser {
 			$result->remaining_content = '';
 		}
 
+		$result->short_description = self::sanitize_text($result->short_description);
 		$result->donate_link = esc_url($result->donate_link);
 
 		$result->requires_at_least = $result->requires;
