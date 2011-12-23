@@ -124,7 +124,9 @@ class Baikonur_ReadmeParser {
 			$current .= $line . "\n";
 		}
 
-		$data->sections[$title] = trim($current);
+		if (!empty($title) && !empty($current)) {
+			$data->sections[$title] = trim($current);
+		}
 		$title = null;
 		$current = null;
 
