@@ -32,7 +32,7 @@ class _Automattic_Readme extends Baikonur_ReadmeParser {
 
 		if (!empty($result->remaining_content)) {
 			$result->remaining_content = implode("\n", $result->remaining_content);
-			$result->remaining_content = trim(str_replace("</h3>\n\n", "</h3>\n", $result->remaining_content));
+			$result->remaining_content = self::filter_text(str_replace("</h3>\n\n", "</h3>\n", $result->remaining_content));
 		}
 		else {
 			$result->remaining_content = '';
