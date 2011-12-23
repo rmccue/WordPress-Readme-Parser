@@ -44,14 +44,24 @@ class Baikonur_ReadmeParser {
 		$data->name = array_shift($contents);
 		$data->name = trim($data->name, "#= ");
 
+		while (($line = array_shift($contents)) !== null) {
+			$trimmed = trim($line);
+			if (!empty($line)) {
+				break;
+			}
+		}
+
 		// Parse headers
 		$headers = array();
 
-		while (($line = array_shift($contents)) !== null && ($line = trim($line)) && !empty($line)) {
-			list($key, $value) = explode(':', $line, 2);
+		do {
+			$key = $value = null;
+			$bits = explode(':', $line, 2);
+			list($key, $value) = $bits;
 			$key = strtolower(str_replace(array(' ', "\t"), '_', trim($key)));
 			$headers[$key] = trim($value);
 		}
+		while (($line = array_shift($contents)) !== null && ($line = trim($line)) && !empty($line));
 
 		if (!empty($headers['tags'])) {
 			$data->tags = explode(',', $headers['tags']);
