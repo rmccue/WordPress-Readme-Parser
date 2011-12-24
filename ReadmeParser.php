@@ -38,6 +38,7 @@ class Baikonur_ReadmeParser {
 		$data->tested = '';
 		$data->contributors = array();
 		$data->stable_tag = '';
+		$data->version = '';
 		$data->donate_link = '';
 		$data->short_description = '';
 		$data->sections = array();
@@ -88,6 +89,12 @@ class Baikonur_ReadmeParser {
 		}
 		if (!empty($headers['donate_link'])) {
 			$data->donate_link = $headers['donate_link'];
+		}
+		if (!empty($headers['version'])) {
+			$data->version = $headers['version'];
+		}
+		else {
+			$data->version = $data->stable_tag;
 		}
 
 		// Parse the short description
