@@ -63,7 +63,12 @@ class Baikonur_ReadmeParser {
 			$bits = explode(':', $line, 2);
 			list($key, $value) = $bits;
 			$key = strtolower(str_replace(array(' ', "\t"), '_', trim($key)));
-			$headers[$key] = trim($value);
+			if ($key === 'tags' && isset($headers['tags'])) {
+				$headers[$key] .= ',' . trim($value);
+			}
+			else {
+				$headers[$key] = trim($value);
+			}
 		}
 		while (($line = array_shift($contents)) !== null && ($line = trim($line)) && !empty($line));
 
