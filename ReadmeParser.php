@@ -112,7 +112,7 @@ class Baikonur_ReadmeParser {
 				$data->short_description .= "\n";
 				continue;
 			}
-			if ($trimmed[0] === '=' && $trimmed[1] === '=') {
+			if ($trimmed[0] === '=' && isset($trimmed[1]) && $trimmed[1] === '=') {
 				array_unshift($contents, $line);
 				break;
 			}
@@ -145,7 +145,7 @@ class Baikonur_ReadmeParser {
 				continue;
 			}
 
-			if ($trimmed[0] === '=' && $trimmed[1] === '=') {
+			if ($trimmed[0] === '=' && isset($trimmed[1]) && $trimmed[1] === '=') {
 				if (!empty($title)) {
 					$data->sections[$title] = trim($current);
 				}
