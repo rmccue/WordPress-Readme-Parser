@@ -151,7 +151,7 @@ class Baikonur_ReadmeParser {
 				}
 
 				$current = '';
-				$real_title = trim($line, "#= ");
+				$real_title = trim($line, "#= \t");
 				$title = strtolower(str_replace(' ', '_', $real_title));
 				if ($title === 'faq') {
 					$title = 'frequently_asked_questions';
@@ -193,7 +193,7 @@ class Baikonur_ReadmeParser {
 					}
 
 					$current = '';
-					$title = trim($line, "#= ");
+					$title = trim($line, "#= \t");
 					continue;
 				}
 
@@ -219,7 +219,7 @@ class Baikonur_ReadmeParser {
 					}
 
 					$current = '';
-					$title = trim($line, "#= ");
+					$title = trim($line, "#= \t");
 					continue;
 				}
 
