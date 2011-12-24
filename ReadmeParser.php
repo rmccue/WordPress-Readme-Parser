@@ -57,6 +57,9 @@ class Baikonur_ReadmeParser {
 		$line = self::get_first_nonwhitespace($contents);
 		do {
 			$key = $value = null;
+			if (strpos($line, ':') === false) {
+				break;
+			}
 			$bits = explode(':', $line, 2);
 			list($key, $value) = $bits;
 			$key = strtolower(str_replace(array(' ', "\t"), '_', trim($key)));
