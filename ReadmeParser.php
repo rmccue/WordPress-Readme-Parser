@@ -71,6 +71,7 @@ class Baikonur_ReadmeParser {
 			}
 		}
 		while (($line = array_shift($contents)) !== null && ($line = trim($line)) && !empty($line));
+		array_unshift($contents, $line);
 
 		if (!empty($headers['tags'])) {
 			$data->tags = explode(',', $headers['tags']);
