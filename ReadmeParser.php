@@ -21,7 +21,12 @@ class Baikonur_ReadmeParser {
 			$contents = explode("\n", $contents);
 		}
 
-		$contents = array_map(array(__CLASS__, 'strip_newlines'), $contents);
+		$this_class = __CLASS__;
+		if (function_exists('get_called_class')) {
+			$this_class = get_called_class();
+		}
+
+		$contents = array_map(array($this_class, 'strip_newlines'), $contents);
 
 		// Strip BOM
 		if (strpos($contents[0], "\xEF\xBB\xBF") === 0) {
@@ -47,14 +52,14 @@ class Baikonur_ReadmeParser {
 		$data->screenshots = array();
 		$data->remaining_content = array();
 
-		$line = self::get_first_nonwhitespace($contents);
+		$line = call_user_func_array(array($this_class, 'get_first_nonwhitespace'), array(&$contents));
 		$data->name = $line;
 		$data->name = trim($data->name, "#= ");
 
 		// Parse headers
 		$headers = array();
 
-		$line = self::get_first_nonwhitespace($contents);
+		$line = call_user_func_array(array($this_class, 'get_first_nonwhitespace'), array(&$contents));
 		do {
 			$key = $value = null;
 			if (strpos($line, ':') === false) {
@@ -176,7 +181,7 @@ class Baikonur_ReadmeParser {
 		$current = null;
 
 		if (empty($data->sections['description'])) {
-			$data->sections['description'] = self::parse_markdown($data->short_description);
+			$data->sections['description'] = call_user_func(array($this_class, 'parse_markdown'), $data->short_description);
 		}
 
 		// Parse changelog
@@ -235,9 +240,9 @@ class Baikonur_ReadmeParser {
 
 		// Markdownify!
 
-		$data->sections = array_map(array(__CLASS__, 'parse_markdown'), $data->sections);
-		$data->changelog = array_map(array(__CLASS__, 'parse_markdown'), $data->changelog);
-		$data->upgrade_notice = array_map(array(__CLASS__, 'parse_markdown'), $data->upgrade_notice);
+		$data->sections = array_map(array($this_class, 'parse_markdown'), $data->sections);
+		$data->changelog = array_map(array($this_class, 'parse_markdown'), $data->changelog);
+		$data->upgrade_notice = array_map(array($this_class, 'parse_markdown'), $data->upgrade_notice);
 
 		if (isset($data->sections['screenshots'])) {
 			preg_match_all('#<li>(.*?)</li>#is', $data->sections['screenshots'], $screenshots, PREG_SET_ORDER);
