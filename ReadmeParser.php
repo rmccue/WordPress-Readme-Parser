@@ -127,18 +127,7 @@ class Baikonur_ReadmeParser {
 		}
 		$data->short_description = trim($data->short_description);
 
-		if (function_exists('mb_strlen') && function_exists('mb_substr')) {
-			if (mb_strlen($data->short_description) > 150) {
-				$data->is_truncated = true;
-				$data->short_description = mb_substr($data->short_description, 0, 150);
-			}
-		}
-		else {
-			if (strlen($data->short_description) > 150) {
-				$data->is_truncated = true;
-				$data->short_description = substr($data->short_description, 0, 150);
-			}
-		}
+		$data->is_truncated = call_user_func_array(array($this_class, 'trim_short_desc'), array(&$data->short_description));
 
 		// Parse the rest of the body
 		$current = '';
@@ -281,6 +270,25 @@ class Baikonur_ReadmeParser {
 
 	protected static function strip_newlines($line) {
 		return rtrim($line, "\r\n");
+	}
+
+	protected static function trim_short_desc(&$desc) {
+		if (function_exists('mb_strlen') && function_exists('mb_substr')) {
+			if (mb_strlen($desc) > 150) {
+				$desc = mb_substr($desc, 0, 150);
+				$desc = trim($desc);
+				return true;
+			}
+		}
+		else {
+			if (strlen($desc) > 150) {
+				$desc = substr($desc, 0, 150);
+				$desc = trim($desc);
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	protected static function parse_markdown($text) {

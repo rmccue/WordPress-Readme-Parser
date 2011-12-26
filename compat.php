@@ -44,7 +44,7 @@ class _Automattic_Readme extends Baikonur_ReadmeParser {
 		}
 
 		$result->name = self::sanitize_text($result->name);
-		$result->short_description = self::sanitize_text($result->short_description);
+		//$result->short_description = self::sanitize_text($result->short_description);
 		$result->donate_link = esc_url($result->donate_link);
 
 		$result->requires_at_least = $result->requires;
@@ -52,6 +52,11 @@ class _Automattic_Readme extends Baikonur_ReadmeParser {
 		unset($result->requires, $result->tested);
 		$result = ((array) $result);
 		return $result;
+	}
+
+	protected static function trim_short_desc(&$desc) {
+		$desc = self::sanitize_text($desc);
+		return parent::trim_short_desc($desc);
 	}
 
 	protected static function sanitize_text( $text ) { // not fancy
