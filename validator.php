@@ -375,5 +375,6 @@ class Readme_Validator {
 }
 
 // That's the class sorted - now lets populate the page
+// Don't quite like this class or the parser? Then extend them and call those instead
 $readme_validator = new Readme_Validator( new Baikonur_ReadmeParser );
 $readme_validator->show_page();
