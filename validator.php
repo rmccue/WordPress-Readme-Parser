@@ -106,7 +106,7 @@ class Readme_Validator {
 		if ( $this->readme_contents ) {
 			// We have readme contents, so parse it.
 			$this->readme = $readme_parser->parse_readme_contents( $this->readme_contents );
-			$this->title = 'Readme Validator Results';
+			$this->title  = 'Readme Validator Results';
 		}
 
 	}
@@ -124,7 +124,7 @@ class Readme_Validator {
 
 		// Fatal errors
 		if ( ! $this->readme->name )
-			$fatal_errors[] = 'No plugin name detected.  Plugin names look like: <code>=== Plugin Name ===</code>';
+			$this->fatal_errors[] = 'No plugin name detected.  Plugin names look like: <code>=== Plugin Name ===</code>';
 
 		// Warnings
 		if ( ! $this->readme->requires )
