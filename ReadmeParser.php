@@ -43,7 +43,9 @@ class Baikonur_ReadmeParser {
 		$data->short_description = '';
 		$data->sections = array();
 		$data->changelog = array();
+		$data->changelog_unversioned_line = false;
 		$data->upgrade_notice = array();
+		$data->upgrade_notice_unversioned_line = false;
 		$data->screenshots = array();
 		$data->remaining_content = array();
 
@@ -190,6 +192,9 @@ class Baikonur_ReadmeParser {
 				if ($trimmed[0] === '=') {
 					if (!empty($current)) {
 						$data->changelog[$title] = trim($current);
+							if (empty($title)) {
+								$data->changelog_unversioned_line = true;
+							}
 					}
 
 					$current = '';
@@ -215,7 +220,10 @@ class Baikonur_ReadmeParser {
 
 				if ($trimmed[0] === '=') {
 					if (!empty($current)) {
-						$data->upgrade_notice[$title] = trim($current);
+							$data->upgrade_notice[$title] = trim($current);
+							if (empty($title)) {
+								$data->upgrade_notice_unversioned_line = true;
+							}
 					}
 
 					$current = '';
